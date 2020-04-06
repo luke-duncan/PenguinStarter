@@ -1,5 +1,5 @@
 
-var classDataPromise = d3 .json("classData.json");
+var classDataPromise = d3.json("classData.json");
     classDataPromise.then(function(penguin) {
         console.log("worked", penguin);
         drawTable(penguin)
@@ -38,6 +38,50 @@ var rows =
         }
         return getmeanQuizes(penguin)
         })
+    
+    rows.append("td")
+    .text(function(penguin)
+        {
+     var getmeanHW = function(penguin)
+        {
+            var meanHW = penguin.homework.map(function(homework){
+            return (homework.grade)})
+                                              
+            return d3.mean(meanHW)
+        }
+            return getmeanHW(penguin)
+          })
+ 
+    
+    rows.append("td")
+    .text(function(penguin)
+    {
+        var getmeanTest = function(penguin)
+    { var meanTest = 
+        penguin.test.map(function(test){ 
+        return (test.grade)})
+    
+    return d3.mean(meanTest)
+    
+                                      }
+    return getmeanTest(penguin)
+    })
+    
+    
+    rows.append("td")
+    .text(function(penguin)
+    {
+        var getFinal = function(penguin)
+        {var Final = 
+            penguin.final.map(function(final)
+            {return (final.grade)})
+        
+        return d3.mean(Final)
+         
+         return getFinal(penguin)
+    
+        }})
+   
 }
 
 

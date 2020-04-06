@@ -1,0 +1,12 @@
+table, td
+{
+    border: solid;
+    border-collapse:collapse;
+    background-color: beige;
+}
+
+img
+{ width: 150px;}
+
+
+
