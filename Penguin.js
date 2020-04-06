@@ -1,5 +1,5 @@
 
-var classDataPromise = d3.json("classData.json");
+var classDataPromise = d3 .json("classData.json");
     classDataPromise.then(function(penguin) {
         console.log("worked", penguin);
         drawTable(penguin)
