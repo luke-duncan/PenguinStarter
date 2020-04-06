@@ -1,45 +1,45 @@
 
-
-
-var penguinPromise = d3.json("classData.json")
-
-penguinPromise.then(
-    function(penguins)
-    {
-        console.log("worked",penguins);
-        drawTable(penguins)
+var classDataPromise = d3.json("classData.json");
+    classDataPromise.then(function(penguin) {
+        console.log("worked", penguin);
+        drawTable(penguin)
     },
     
-    function(err)
-    {
-        console.log("failed",err);
+    function(err){
+        console.log("failed:", err);
     })
 
 
 
-var drawTable = function(penguins)
+var drawTable = function(penguin)
 {
-var rows = d3.select("#ptable")
+var rows = 
+    d3.select("table tbody")
     .selectAll("tr")
-    .data(penguins)
+    .data(penguin)
     .enter()
     .append("tr")
+    .classed("row",true)
 
     rows.append("td")
     .append("img")
-    .attr("src", function(penguins){return penguins.picture})
+    .attr("src", function(penguin){return "imgs/" + penguin.picture})
     
     rows.append("td")
-    .text(function(penguins){
-        return getmeanQuizes
-})
-
-
-
-var getmeanQuizes = function(penguin)
+    .text(function(penguin)
+          {
+        var getmeanQuizes = function(penguin)
         {
-            var meanQuizes = penguin.quizes.map(grade)
+            var meanQuizes = penguin.quizes.map(function(quizes){
+                                                
             return (quizes.grade)
+                                                })
+        return d3.mean(meanQuizes)
         }
-        return d3.mean(meanQuizes)}
+        return getmeanQuizes(penguin)
+        })
+}
+
+
+
 
