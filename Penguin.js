@@ -8,6 +8,33 @@ var classDataPromise = d3.json("classData.json");
     function(err){
         console.log("failed:", err);
     })
+var getmeanHW = function(penguin){
+var meanHW = penguin.homework.map(function(homework){
+            return (homework.grade)})
+                                              
+            return d3.mean(meanHW)}
+
+var getmeanQuizes = function(penguin)
+        {
+            var meanQuizes = penguin.quizes.map(function(quizes){
+                                                
+            return (quizes.grade)
+                                                })
+        return d3.mean(meanQuizes)}
+
+   var getmeanTest = function(penguin)
+    { var meanTest = 
+        penguin.test.map(function(test){ 
+        return (test.grade)})
+    
+    return d3.mean(meanTest)}
+   
+   var getFinal = function(penguin)
+   {return penguin.final[0].grade}
+    
+                                      
+   
+        
 
 
 
@@ -71,18 +98,100 @@ var rows =
     rows.append("td")
     .text(function(penguin)
     {
-        var getFinal = function(penguin)
-        {var Final = 
-            penguin.final.map(function(final)
-            {return (final.grade)})
-        
-        return d3.mean(Final)
-         
-         return getFinal(penguin)
+        return (penguin.final[0].grade)
     
-        }})
+        })
+    
+    
+    d3.select("#HW").on("click", function()
+                  { console.log("hi")
+                      
+    penguin.sort(function(charA,charB)
+        {
+        if(getmeanHW(charA) == getmeanHW(charB))
+            {return 0;}
+        else if(getmeanHW(charA) < getmeanHW(charB))
+            {return 1;}
+        else 
+            {return -1;}
+    } )
+        d3.selectAll("tbody tr")
+        .remove()
+        drawTable(penguin)
+        
+                
+        })
    
+    
+    
+    d3.select("#Quiz").on("click", function()
+                  { console.log("hi")
+                      
+    penguin.sort(function(charA,charB)
+        {
+        if(getmeanQuizes(charA) == getmeanQuizes(charB))
+            {return 0;}
+        else if(getmeanQuizes(charA) < getmeanQuizes(charB))
+            {return 1;}
+        else 
+            {return -1;}
+    } )
+        d3.selectAll("tbody tr")
+        .remove()
+        drawTable(penguin)
+          })
+    
+    
+    
+    d3.select("#test").on("click", function()
+                  { console.log("hi")
+                      
+    penguin.sort(function(charA,charB)
+        {
+        if(getmeanTest(charA) == getmeanTest(charB))
+            {return 0;}
+        else if(getmeanTest(charA) < getmeanTest(charB))
+            {return 1;}
+        else 
+            {return -1;}
+    } )
+        d3.selectAll("tbody tr")
+        .remove()
+        drawTable(penguin)
+        
+                
+        })
+    
+     d3.select("#final").on("click", function()
+                  { console.log("hi")
+                      
+    penguin.sort(function(charA,charB)
+        {
+        if(getFinal(charA) == getFinal(charB))
+            {return 0;}
+        else if(getFinal(charA) < getFinal(charB))
+            {return 1;}
+        else 
+            {return -1;}
+    } )
+        d3.selectAll("tbody tr")
+        .remove()
+        drawTable(penguin)
+        
+                
+        })
+   
+    
+    
+    
+    
+    
 }
+
+
+
+
+
 
 
 
